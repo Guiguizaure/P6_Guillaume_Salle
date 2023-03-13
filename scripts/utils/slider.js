@@ -22,6 +22,7 @@ sliderContainer.innerHTML = `
   const mediaCardsList = Array.from(
     document.querySelectorAll(".media-card-img")
   );
+  console.log(mediaCardsList)
 
 const prevBtn = document.querySelector(".arrow-left");
 const nextBtn = document.querySelector(".arrow-right");
@@ -29,10 +30,10 @@ const closeBtn = document.querySelector(".close-lightbox");
 
   //Création d'un tableaux de tous les éléments pour le media slide
   const slides = Array.from(document.querySelectorAll(".slide"));
-//  console.log(slides);
+ console.log(slides);
   //tableau contenant les identifiants de tous les médias à des fins de navigation
   const slidesIds = slides.map((slide) => parseInt(slide.dataset.id));
- // console.log(slidesIds);
+ console.log(slidesIds);
 
   // Fonction forEach avec un eventlistener aux media
     // mediaCardsList.forEach(
@@ -53,6 +54,10 @@ const closeBtn = document.querySelector(".close-lightbox");
         const currIndex = slidesIds.indexOf(
           parseInt(e.target.parentElement.dataset.id)
         );
+        console.log(slidesIds.indexOf(
+          parseInt(e.target.parentElement.dataset.id)
+        ))
+        
 
         //récupération de currindex à l'ouverture du media en focus
         showSlide(currIndex);
@@ -63,44 +68,45 @@ const closeBtn = document.querySelector(".close-lightbox");
         // Ajout d'un écouteur d'événement pour afficher le média précédent
         prevBtn.addEventListener("click", (e) => {
           showSlide(parseInt(e.target.dataset.prev));
-          console.log(e.target.dataset.prev);
+          // console.log(e.target.dataset.prev);
         });
         //Ajout d'un écouteur d'événement pour afficher le média précédent
         nextBtn.addEventListener("click", (e) => {
           showSlide(parseInt(e.target.dataset.next));
-         console.log( e.target.dataset.next);
+        //  console.log( e.target.dataset.next);
         });
 
-        mc.addEventListener(
-          "keydown",
-          function (e) {
-             if (e.key == "Enter") {
-              console.log('hello')
-              sliderContainer.style.display = "block";
-             }
-          },
-           false
-        );
         
-                //Fermeture du slider
+        
+        //Fermeture du slider
         closeBtn.addEventListener("click", () => {
           sliderContainer.style.display = "none";
         });
-
+        e.preventDefault();
       }) //End mc.addEventListener
-  ); //end mediaCardlist forEach
+); //end mediaCardlist forEach
+
+mediaCardsList.forEach(
+  (mc) =>
+  // console.log(mc)
+
+  mc.addEventListener("keydown", function (e) {
+    if (e.key == "Enter") {
+      console.log('hello')
+    }
+ },
+  false)
+);
 
 closeBtn.addEventListener(
   "keydown",
   function (e) {
      if (e.key == "Enter") {
-      console.log('hello')
        sliderContainer.style.display = "none";
      }
   },
    false
 );
-
 
 
 window.addEventListener(

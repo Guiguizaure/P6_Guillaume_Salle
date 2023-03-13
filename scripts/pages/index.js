@@ -25,7 +25,7 @@ import {photographerFactory} from "../factories/index.js"
       // rattachement const a la classe 
         const photographersSection = document.querySelector(".photographer_section");
         
-        
+        console.log(photographers)
 
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);

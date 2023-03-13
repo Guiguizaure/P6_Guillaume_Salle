@@ -93,10 +93,10 @@ input::placeholder{
   padding-left: 8px;
 }
 
-input[type="text"],
+/* input[type="text"],
 input[type="email"]{
-  /* padding-left: 8px; */
-}
+  padding-left: 8px;
+} */
 
 textarea {
   width: 100%;
@@ -518,7 +518,7 @@ form input {
   
   .static-box {
     display: flex;
-    /* width: 260px; */
+    width: 300px;
     background-color: #db8876;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;

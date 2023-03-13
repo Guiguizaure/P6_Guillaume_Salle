@@ -1,5 +1,7 @@
 //  static box
 
+export let staticInfos = {};
+
 export function likesInfos(totalLikes, dayPrice) {
   const likesPriceBox = document.querySelector('.likesBox');
   likesPriceBox.innerHTML = `
@@ -14,72 +16,76 @@ export function likesInfos(totalLikes, dayPrice) {
           <p class="price-like-box" aria-label=" Son tarif est de: ${dayPrice} Euros par jour" tabindex="0">${dayPrice} € / Jour</p>
       </div>
   </div>`;
+  // let totalBox = `${totalLikes}`; 
+  staticInfos.totalLikes;
+  staticInfos.dayPrice
+}
 
-  let totalBox = `${totalLikes}`; 
+//  export function incrementTotalLikes(totalLikes) {
+//       // if ()
+//       console.log(totalLikes)
+//     }
+//     incrementTotalLikes();
 
-  //increment likes
-  const incrementButton = document.querySelectorAll(".increment-likes");
-  const decrementButton = document.querySelectorAll(".decrement-likes");
-  const likesTotal = document.querySelector(".numberLikesBox");
-  const likeCards = document.querySelectorAll(".media-card-text");
 
+
+// export function handleEventLike() {
+//     //increment likes
+//     const incrementButton = document.querySelectorAll(".increment-likes");
+//     const decrementButton = document.querySelectorAll(".decrement-likes");
+//     // const likesTotal = document.querySelector(".numberLikesBox");
+//     const likeCards = document.querySelectorAll(".media-card-text");
+//   // Creation de la boucle qui va incrémenter au click
+//   for (let i = 0; i < incrementButton.length; i++) {
+    
+//     incrementButton[i].addEventListener("click", function (event) {
   
-  // Creation de la boucle qui va incrémenter au click
-  for (let i = 0; i < incrementButton.length; i++) {
-    
-  incrementButton[i].addEventListener("click", function (event) {
-
-    
-   let buttonClicked = event.target;
-
-   let textLike = buttonClicked.parentElement.children[2];
-
-   let textLikeValue = textLike.innerHTML;
-
-    //  return la chaine avec +1
-   let newValue = parseInt(textLikeValue) - 1;
-
-
-    likesTotal.innerHTML = --totalBox;
-
-
-   if ((textLike.innerHTML = newValue )) {
-     incrementButton[i].style.display = "none";
-     decrementButton[i].style.display = "block";
-
-   }
-   event.preventDefault();
-   console.log(textLikeValue)
- });
- 
-}
-// Creation de la boucle qui va décrémenter au click
-  for (let i = 0; i < decrementButton.length; i++) {
-    decrementButton[i].addEventListener("click", function (event) {
-      let buttonClicked = event.target;
-
-      let textLike = buttonClicked.parentElement.children[2];
-
-      let textLikeValue = textLike.innerHTML;
-
-      let newValue = parseInt(textLikeValue) + 1;
-
-      likesTotal.innerHTML = ++totalBox;
-
-      if ((textLike.innerHTML = newValue)) {
-        decrementButton[i].style.display = "none";
-        incrementButton[i].style.display = "block";
-      } else {
-        likeCards.innerHTML = 0;
-      }
-      event.preventDefault();
-      console.log(textLikeValue)
-    });
-  }
-
-}
-
-
-
-
+      
+//      let buttonClicked = event.target;
+  
+//      let textLike = buttonClicked.parentElement.children[2];
+  
+//      let textLikeValue = textLike.innerHTML;
+  
+//       //  return la chaine avec +1
+//      let newValue = parseInt(textLikeValue) - 1;
+  
+  
+//       // likesTotal.innerHTML = --totalBox;
+  
+  
+//      if ((textLike.innerHTML = newValue )) {
+//        incrementButton[i].style.display = "none";
+//        decrementButton[i].style.display = "block";
+  
+//      }
+//      event.preventDefault();
+//     //  console.log(textLikeValue)
+//    });
+   
+//   }
+//   // Creation de la boucle qui va décrémenter au click
+//     for (let i = 0; i < decrementButton.length; i++) {
+//       decrementButton[i].addEventListener("click", function (event) {
+//         let buttonClicked = event.target;
+  
+//         let textLike = buttonClicked.parentElement.children[2];
+  
+//         let textLikeValue = textLike.innerHTML;
+  
+//         let newValue = parseInt(textLikeValue) + 1;
+  
+//         // likesTotal.innerHTML = ++totalBox;
+  
+//         if ((textLike.innerHTML = newValue)) {
+//           decrementButton[i].style.display = "none";
+//           incrementButton[i].style.display = "block";
+//         } else {
+//           likeCards.innerHTML = 0;
+//         }
+//         event.preventDefault();
+//         // console.log(textLikeValue)
+//       });
+//     }
+//}
 
