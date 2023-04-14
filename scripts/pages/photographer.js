@@ -2,9 +2,7 @@ import {formulaire} from "../utils/contactForm.js"
 import {MediaFactorie} from "../factories/photographer.js"
 import {handleButtonsOptions, sortData} from "../utils/selectBox.js"
 import {enableLightboxListeners} from "../utils/slider.js"
-// import {handleEventLike} from "../utils/static.js"
-import { likesInfos } from "../utils/static.js"
-import { staticInfos } from "../utils/static.js"
+
 
 
 // Data recuperer par local storage
@@ -105,51 +103,61 @@ export async function displayMedia(portfolioArray) {
     });
   
 
-    
     const incrementButton = document.querySelectorAll(".increment-likes");
     const decrementButton = document.querySelectorAll(".decrement-likes");
     const likesTotal = document.querySelector(".numberLikesBox");
-    const likeCards = document.querySelectorAll(".media-card-text");
-  // Creation de la boucle qui va incrémenter au click
-  for (let i = 0; i < incrementButton.length; i++) {
+    // const likeCards = document.querySelectorAll(".media-card-text");
     
-    incrementButton[i].addEventListener("click", function (event) {
-  
-     let buttonClicked = event.target;
-     let textLike = buttonClicked.parentElement.children[2];
-     let textLikeValue = textLike.innerHTML;
-      //  return la chaine avec +1
-     let newValue = parseInt(textLikeValue) - 1;
-      --likesTotal.innerHTML;
-  
-     if ((textLike.innerHTML = newValue )) {
-       incrementButton[i].style.display = "none";
-       decrementButton[i].style.display = "block";
-     }
-     event.preventDefault();
-   });
-   
-  }
-  // Creation de la boucle qui va décrémenter au click
-    for (let i = 0; i < decrementButton.length; i++) {
-      decrementButton[i].addEventListener("click", function (event) {
-
-        let buttonClicked = event.target;
-        let textLike = buttonClicked.parentElement.children[2];
-        let textLikeValue = textLike.innerHTML;
-        let newValue = parseInt(textLikeValue) + 1;
-        ++likesTotal.innerHTML;
-  
-        if ((textLike.innerHTML = newValue)) {
-          decrementButton[i].style.display = "none";
-          incrementButton[i].style.display = "block";
-        } else {
-          likeCards.innerHTML = 0;
-        }
+    // Fonction pour incrémenter le nombre de likes
+    function incrementLikes(button) {
+      const textLike = button.parentElement.children[2];
+      let textLikeValue = parseInt(textLike.innerHTML);
+      textLike.innerHTML = textLikeValue - 1;
+      likesTotal.innerHTML = parseInt(likesTotal.innerHTML) - 1;
+      button.style.display = "none";
+      button.nextElementSibling.style.display = "block";
+    }
+    
+    // Fonction pour décrémenter le nombre de likes
+    function decrementLikes(button) {
+      const textLike = button.parentElement.children[2];
+      let textLikeValue = parseInt(textLike.innerHTML);
+      textLike.innerHTML = textLikeValue + 1;
+      likesTotal.innerHTML = parseInt(likesTotal.innerHTML) + 1;
+      button.style.display = "none";
+      button.previousElementSibling.style.display = "block";
+    }
+    
+    // Boucle pour ajouter les écouteurs d'événements aux boutons
+    for (let i = 0; i < incrementButton.length; i++) {
+      // Événement de clic pour incrémenter les likes
+      incrementButton[i].addEventListener("click", function(event) {
+        incrementLikes(event.target);
         event.preventDefault();
       });
+      // Événement de clic pour décrémenter les likes
+      decrementButton[i].addEventListener("click", function(event) {
+        decrementLikes(event.target);
+        event.preventDefault();
+      });
+      // Événement de pression de touche pour incrémenter les likes avec la touche Entrée
+      incrementButton[i].addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          incrementLikes(event.target);
+          event.preventDefault();
+        }
+      });
+      // Événement de pression de touche pour décrémenter les likes avec la touche Entrée
+      decrementButton[i].addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          decrementLikes(event.target);
+          event.preventDefault();
+        }
+      });
     }
-      enableLightboxListeners();
+    
+
+  enableLightboxListeners();
 }
 
 

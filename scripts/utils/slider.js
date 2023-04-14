@@ -1,3 +1,4 @@
+// Select the slider container element and add the HTML code for the slider modal
 const sliderContainer = document.querySelector(".slider-modal")
 sliderContainer.innerHTML = `
  <div class="slider-container" >
@@ -17,150 +18,126 @@ sliderContainer.innerHTML = `
 
 
 
-//enableLightboxListeners
-  export const enableLightboxListeners = () => {
+// Function to enable the lightbox listeners
+export const enableLightboxListeners = () => {
+ // Select the previous, next, and close buttons for the slider modal
+  const prevBtn = document.querySelector(".arrow-left");
+  const nextBtn = document.querySelector(".arrow-right");
+  const closeBtn = document.querySelector(".close-lightbox");
+
+  // Select all media cards and create an array of media card elements
   const mediaCardsList = Array.from(
     document.querySelectorAll(".media-card-img")
   );
-  console.log(mediaCardsList)
 
-const prevBtn = document.querySelector(".arrow-left");
-const nextBtn = document.querySelector(".arrow-right");
-const closeBtn = document.querySelector(".close-lightbox");
-
-  //Création d'un tableaux de tous les éléments pour le media slide
+  // Create an array of slide elements
   const slides = Array.from(document.querySelectorAll(".slide"));
- console.log(slides);
-  //tableau contenant les identifiants de tous les médias à des fins de navigation
+
+  // Create an array of slide IDs for navigation purposes
   const slidesIds = slides.map((slide) => parseInt(slide.dataset.id));
- console.log(slidesIds);
 
-  // Fonction forEach avec un eventlistener aux media
-    // mediaCardsList.forEach(
-    //   (mc) => 
-    //     mc.addEventListener("keydown", function (e) {
-    //       if (e.key == "Enter") {
-    //         sliderContainer.style.display = "block";
-    //       }
-    //    },
-    //     false)
-
-    // )
-
-  mediaCardsList.forEach(
-    (mc) =>
-    
-      mc.addEventListener("click", (e) => {
-        const currIndex = slidesIds.indexOf(
-          parseInt(e.target.parentElement.dataset.id)
-        );
-        console.log(slidesIds.indexOf(
-          parseInt(e.target.parentElement.dataset.id)
-        ))
-        
-
-        //récupération de currindex à l'ouverture du media en focus
-        showSlide(currIndex);
-
-        // display Lightbox
-        sliderContainer.style.display = "block";
-     
-        // Ajout d'un écouteur d'événement pour afficher le média précédent
-        prevBtn.addEventListener("click", (e) => {
-          showSlide(parseInt(e.target.dataset.prev));
-          // console.log(e.target.dataset.prev);
-        });
-        //Ajout d'un écouteur d'événement pour afficher le média précédent
-        nextBtn.addEventListener("click", (e) => {
-          showSlide(parseInt(e.target.dataset.next));
-        //  console.log( e.target.dataset.next);
-        });
-
-        
-        
-        //Fermeture du slider
-        closeBtn.addEventListener("click", () => {
-          sliderContainer.style.display = "none";
-        });
-        e.preventDefault();
-      }) //End mc.addEventListener
-); //end mediaCardlist forEach
-
-mediaCardsList.forEach(
-  (mc) =>
-  // console.log(mc)
-
-  mc.addEventListener("keydown", function (e) {
-    if (e.key == "Enter") {
-      console.log('hello')
-    }
- },
-  false)
-);
-
-closeBtn.addEventListener(
-  "keydown",
-  function (e) {
-     if (e.key == "Enter") {
-       sliderContainer.style.display = "none";
-     }
-  },
-   false
-);
-
-
-window.addEventListener(
-  "keydown",
-  function (e) {
-    if (e.key == "Escape") {
-      sliderContainer.style.display = "none";
-    }
-  },
-  false
-);
-  //Ajout d'un écouteur d'événement pour le clavier
-  window.addEventListener(
-    "keydown",
-    function (e) {
-      if (e.key == "ArrowLeft") {
-        prevBtn.click();
-        //console.log(window);
-      } else if (e.key == "ArrowRight") {
-        nextBtn.click();
-        // console.log(window);
-      }
-    },
-    false
-  );
-  
-  // window.addEventListener("click", function(event) {
-  //   console.log('event on window', event)
-
-  // });
-
-  //showSlide
+  // Function to show a particular slide
   const showSlide = (index) => {
-    //Afficher les médias pertinents en fonction de l'index
     slides.forEach((slide) => {
+      // If the slide ID matches the current index, show the slide, otherwise hide it
       parseInt(slide.dataset.id) === slidesIds[index]
         ? (slide.style.display = "block")
         : (slide.style.display = "none");
     });
 
-    //Définir la valeur de l'ensemble de données suivant pour Btn "précédent"
+    // If the current index is at the beginning of the array, set the previous button's ID to the last element of the array, otherwise set it to the index before the current one
     index - 1 < 0
-      ? //Si nous atteignons le premier index de média, aller au dernier index de média
-        (prevBtn.dataset.prev = slidesIds.length - 1)
-      : // Sinon, aller simplement à l'index précédent
-        (prevBtn.dataset.prev = index - 1);
-
-    //Définir la valeur de l'ensemble de données suivant pour Btn "next"
+      ? (prevBtn.dataset.prev = slidesIds.length - 1)
+      : (prevBtn.dataset.prev = index - 1);
+    // If the current index is at the end of the array, set the next button's ID to the first element of the array, otherwise set it to the index after the current one
     index + 1 > slidesIds.length - 1
-      ? //Si nous atteignons le dernier index des médias, revenons au premier index des médias
-        (nextBtn.dataset.next = 0)
-      : //Sinon, passez simplement à l'index suivant
-        (nextBtn.dataset.next = index + 1);
-  }; //end showSlide
+      ? (nextBtn.dataset.next = 0)
+      : (nextBtn.dataset.next = index + 1);
+  };
+
+  
+  // Add event listeners to each media card
+  mediaCardsList.forEach((mc) => {
+    // Set the media card tabindex to 0 for accessibility
+    mc.setAttribute("tabindex", "0");
+
+    mc.addEventListener("click", (e) => {
+      // Get the current index of the clicked media card's parent element in the slidesIds array
+      const currIndex = slidesIds.indexOf(parseInt(e.target.parentElement.dataset.id));
+      // Show the current slide
+      showSlide(currIndex);
+      // Display the slider container
+      sliderContainer.style.display = "block";
+
+      prevBtn.addEventListener("click", (e) => {
+        showSlide(parseInt(e.target.dataset.prev));
+      });
+
+      nextBtn.addEventListener("click", (e) => {
+        showSlide(parseInt(e.target.dataset.next));
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sliderContainer.style.display = "none";
+      });
+
+      e.preventDefault();
+    });
+  });
+
+  // Add event listeners to each media card but with keydown
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.classList.contains("media-card-img")) {
+      
+      // Get the current index of the clicked media card's parent element in the slidesIds array
+      const currIndex = slidesIds.indexOf(parseInt(e.target.parentElement.dataset.id));
+      // Show the current slide
+      showSlide(currIndex);
+      // Display the slider container
+      sliderContainer.style.display = "block";
+
+      prevBtn.addEventListener("click", (e) => {
+        showSlide(parseInt(e.target.dataset.prev));
+      });
+
+      nextBtn.addEventListener("click", (e) => {
+        showSlide(parseInt(e.target.dataset.next));
+      });
+
+      e.preventDefault();
+    }
+  });
+
+
+  // closeBtn.addEventListener(
+  //   "keydown",
+  //   function (e) {
+  //     if (e.key == "Enter") {
+  //       sliderContainer.style.display = "none";
+  //     }
+  //   },
+  //   false
+  // );
+
+  // closeBtn.addEventListener("keydown", (e) => {
+  //   if (e.key === "Enter") {
+  //     sliderContainer.style.display = "none";
+  //   }
+  // });
+
+  // Add event listeners so that we can close the lightbox by 
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      sliderContainer.style.display = "none";
+    } else if (e.key === "ArrowLeft") {
+      prevBtn.click();
+    } else if (e.key === "ArrowRight") {
+      nextBtn.click();
+    }
+  });
+  
+
+
 }; //end enableLightboxListeners
 
 
