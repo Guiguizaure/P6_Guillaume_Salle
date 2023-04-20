@@ -7,7 +7,7 @@ sliderContainer.innerHTML = `
    </div>
    <div class="slider-media-container"></div>
    
-   <div class="arrow-right-container" >
+   <div class="arrow-right-container">
      <div class="arrow-right" aria-label=" Voir l'image suivante" tabindex="0"></div>
      <div class="closeContainer">
      <div class="close-lightbox" aria-label=" Cliquer pour fermer" tabindex="0">X</div>
@@ -109,21 +109,15 @@ export const enableLightboxListeners = () => {
   });
 
 
-  // closeBtn.addEventListener(
-  //   "keydown",
-  //   function (e) {
-  //     if (e.key == "Enter") {
-  //       sliderContainer.style.display = "none";
-  //     }
-  //   },
-  //   false
-  // );
-
-  // closeBtn.addEventListener("keydown", (e) => {
-  //   if (e.key === "Enter") {
-  //     sliderContainer.style.display = "none";
-  //   }
-  // });
+  closeBtn.addEventListener(
+    "keydown",
+    function (e) {
+      if (e.key == "Enter") {
+        sliderContainer.style.display = "none";
+      }
+    },
+    false
+  );
 
   // Add event listeners so that we can close the lightbox by 
   window.addEventListener("keydown", (e) => {
