@@ -110,7 +110,7 @@ export function formulaire(name, baseURL, id) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       // console log des value et alert envoye si ok 
-      alert("Formulaire envoyé");
+      // alert("Formulaire envoyé");
       console.log(firstName.value);
       console.log(lastName.value);
       console.log(email.value);

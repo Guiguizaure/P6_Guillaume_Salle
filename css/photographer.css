@@ -225,6 +225,7 @@ textarea {
 }
 .infos-Likes-Icon{
   margin-top: .125rem;
+  cursor: pointer;
 }
 
 .media-card{
