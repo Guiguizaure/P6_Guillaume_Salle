@@ -115,7 +115,7 @@ console.log(likeCount)
 // Loop through each container and set up the event listeners for the like button
 imageContainers.forEach(container => {
   
-  const likeCount = container.querySelector('.img-likes');
+  // const likeCount = container.querySelector('.img-likes');
   
   const likeButton = container.querySelector('.infos-Likes-Icon');
   let count = parseInt(likeCount.textContent);

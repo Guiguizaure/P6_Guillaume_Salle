@@ -19,34 +19,7 @@ export function likesInfos(totalLikes, dayPrice) {
   // let totalBox = `${totalLikes}`; 
   staticInfos.totalLikes;
   staticInfos.dayPrice
-
-  const imageContainers = document.querySelectorAll('.media-card-text');
-const likeCount = document.querySelectorAll('.img-likes');
-console.log(likeCount)
-
-// Loop through each container and set up the event listeners for the like button
-imageContainers.forEach(container => {
   
-  const likeCount = container.querySelector('.img-likes');
-  console.log(likeCount)
-  const likeButton = container.querySelector('.infos-Likes-Icon');
-  let count = parseInt(likeCount.textContent);
-  let isLiked = false;
-
-  // Set the initial like count
-  likeCount.textContent = count;
-
-  // Add event listeners to the like button
-    likeButton.addEventListener('click', () => {
-      if (isLiked) {
-        count--;
-      } else {
-        count++;
-      }
-      isLiked = !isLiked;
-      likeCount.textContent = count;
-    });
-  });
 }
 
 //  export function incrementTotalLikes(totalLikes) {
