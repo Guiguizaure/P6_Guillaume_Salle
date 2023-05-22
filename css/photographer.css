@@ -273,14 +273,12 @@ textarea {
     margin-left: 5px;
 
 } */
-.increment-likes,
-.decrement-likes  {
-    position: absolute;
-    display: flex;
-    padding-top: 1px;
-    padding-right: 25px;
+.img-likes  {
+    /* position: absolute;
+    display: flex; */
+    margin-right: 3px;
     color: #901C1C;
-    cursor: pointer;
+
 } 
 
 .portfolio-section{

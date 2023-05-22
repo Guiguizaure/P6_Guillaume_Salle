@@ -12,11 +12,11 @@
         // mise en place du nom et de l'id dans l URL
         const url = `${baseURL}?photographer=${id}`;
         // creation innerHTML au lieu d'appendchild 
-        article.innerHTML = `<a href= ${url}>
+        article.innerHTML = `<a href= ${url} tabindex="0">
                 <img src=${picture} class="imageProfil" alt="Voir le portfolio de ${name}">
                 <h2 class="photographer-name-profil">${name}</h2>
             </a>
-            <div class="photographer_details">
+            <div class="photographer_details" tabindex="0">
                 <p class="location">${city}, ${country}</p>
                 <p class="tagline">${tagline}</p>
                 <p class="price-card">${price}€/jour</p>
