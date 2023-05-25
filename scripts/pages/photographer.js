@@ -69,7 +69,7 @@ function displayPhotographerInfo(photographer) {
                             <p class="tagline" aria-label="${tagline}">${tagline}</p>
                           </div>
                             
-                          <button role="button" class="contact_button" onclick="displayModal() aria-label="Contacter ${name}">
+                          <button role="button" class="contact_button" aria-label="Contacter ${name}">
                             Contactez-moi
                           </button>
                           
@@ -86,11 +86,8 @@ export async function displayMedia(portfolioArray) {
   const urlParams = new URLSearchParams(window.location.search);
   const photographerId = parseInt(urlParams.get("photographer"));
   
-  const { photographer, totalLikes } =
-        await getData(photographerId);
-      displayPhotographerInfo(photographer);
+  const { totalLikes } = await getData(photographerId);
 
-  await getData(photographerId);
 
     const portfolioSection = document.querySelector(".portfolio-section");
     const lightboxSection = document.querySelector(".slider-modal");
@@ -147,27 +144,6 @@ console.log(totalLikes)
     });
   });
   
-   
-
-
-
-    //   // Événement de pression de touche pour incrémenter les likes avec la touche Entrée
-    //   document.addEventListener("keypress", function(event) {
-    //     if (event.key === "Enter") {
-    //       incrementLikes(event.target);
-    //       event.preventDefault();
-    //     }
-    //   });
-    //   // Événement de pression de touche pour décrémenter les likes avec la touche Entrée
-    //   document.addEventListener("keypress", function(event) {
-    //     if (event.key === "Enter") {
-    //       decrementLikes(event.target);
-    //       event.preventDefault();
-    //     }
-    //   });
-    // }
-    
-
   enableLightboxListeners();
 }
 
