@@ -16,7 +16,5 @@ export function likesInfos(totalLikes, dayPrice) {
           <p class="price-like-box" aria-label=" Son tarif est de: ${dayPrice} Euros par jour" tabindex="0">${dayPrice} € / Jour</p>
       </div>
   </div>`;
-  // let totalBox = `${totalLikes}`; 
-  
 }
 

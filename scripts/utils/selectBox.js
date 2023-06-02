@@ -1,7 +1,7 @@
 import { displayMedia } from "../pages/photographer.js";
 import { likesInfos } from "./static.js";
 
- const selectSort = document.querySelector('.selectBox');
+ const selectSort = document.querySelector(".selectBox");
 
 selectSort.innerHTML = `   
       <div class="works-sort">
@@ -31,22 +31,30 @@ selectSort.innerHTML = `
 let isOpen = false;
 
 const selectOptions = document.querySelector('#select-block-options');
-
-let firstButtonText = document.querySelector('#select-first-option-text');
-
+const firstButtonText = document.querySelector('#select-first-option-text');
 const arrow = document.querySelector('.arrow-down-open')  
-
 const optionsButtons = selectOptions.querySelectorAll('button');
-
 const select = document.querySelector('.sort-base');
 
+
+function closeSelect() {
+  // Fermer le select
+
+  selectOptions.style.display = 'none';
+  select.style.borderRadius = '5px';
+
+  return (isOpen = false);
+}
+
 document.querySelector('#select-first-option').addEventListener('click', () => {
-   arrow.classList.toggle("arrow-down-open");
+
+  arrow.classList.toggle("arrow-down-open");
+
   if (isOpen === false) {
     // Ouvrir le select
 
     selectOptions.style.display = 'block';
-    select.style.borderRadius = '7px 7px 0 0';
+    select.style.borderRadius = '5px 5px 0 0';
 
     isOpen = true;
 
@@ -57,15 +65,6 @@ document.querySelector('#select-first-option').addEventListener('click', () => {
     return closeSelect();
   }
 });
-
-function closeSelect() {
-  // Fermer le select
-
-  selectOptions.style.display = 'none';
-  select.style.borderRadius = '7px';
-
-  return (isOpen = false);
-}
 
 
 export function handleButtonsOptions() {

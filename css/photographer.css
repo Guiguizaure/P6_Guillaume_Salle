@@ -488,10 +488,12 @@ form input {
     background-color: #901c1c;
     color: #fafafa;
     z-index: 90;
+    transition: 150ms ease-in-out;
   }
   
   .arrow-down-open {
-    transform: rotate(180deg);
+    transition: 150ms ease-in-out;
+    transform: rotateX(180deg);
   }
   .popularité,
   .date,

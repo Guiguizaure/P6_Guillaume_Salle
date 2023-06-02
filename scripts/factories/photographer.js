@@ -1,11 +1,11 @@
 export class MediaFactorie  {
     constructor(data) {
         if(Object.prototype.hasOwnProperty.call(data, "image")){
-            return new Image(data)
+            return new MediaImage(data)
         }
 
         else if(Object.prototype.hasOwnProperty.call(data, "video")){
-            return new Video(data)
+            return new MediaVideo(data)
         }
 
     console.log(data.type)
@@ -13,7 +13,7 @@ export class MediaFactorie  {
 }
 
 
-export class Image{
+export class MediaImage{
     constructor (data) {
         this.id = data.id
         this.photographerId = data.photographerId
@@ -27,9 +27,9 @@ export class Image{
      getMediaCardDOM() {
         return  `
         <article>
-            <div class ="media-card" data-id="${this.id}" data-title= "${this.title}" data-date="${this.date}" data-likes="${this.likes}">
+            <figure class ="media-card" data-id="${this.id}" data-title= "${this.title}" data-date="${this.date}" data-likes="${this.likes}">
                 <img class="media-card-img lb-target" src="assets/newSamplePhotos/${this.image}" alt="nom du média : ${this.title}" tabindex="0"/>
-                <div class="media-card-text">
+                <figcaption class="media-card-text">
                     <span class="media-card-title">${this.title}</span>
                     <div class="likesByMedia">
                         <em class="infos-Likes-Icon" aria-label="Like" tabindex="0" likeNumber="${this.likes}">
@@ -40,8 +40,8 @@ export class Image{
                        
                         <p class="img-likes" aria-label="Ce média a ${this.likes} likes">${this.likes}</p>  
                     </div>
-                </div>
-            </div>
+                </figcaption>
+            </figure>
         </article>
         `
     }
@@ -50,17 +50,17 @@ export class Image{
         return `
             <div  class="slide hide-slide" data-id="${this.id}" data-title="${this.title}" data-date="${this.date}">
                 <div class="slide-container">
-                    <div class="slide-media-container">
+                    <figure class="slide-media-container">
                          <span class="media-slide-title">${this.title}</span>
                          <img class="media-img lb-target" src="assets/newSamplePhotos/${this.image}" alt="intitulé du média ! ${this.title}"/>       
-                    </div>
+                    </figure>
                 </div>
             </div>
         `
     }
 }
 
-export class Video {
+export class MediaVideo {
     constructor (data) {
         this.id = data.id
         this.photographerId = data.photographerId
@@ -74,11 +74,11 @@ export class Video {
      getMediaCardDOM() {
         return  `
         <article>
-            <div class ="media-card" data-id="${this.id}" data-title= "${this.title}" data-date="${this.date}">
+            <figure class ="media-card" data-id="${this.id}" data-title= "${this.title}" data-date="${this.date}">
                 <video preload='metadata' id="ctrls-vid" class="media-card-img lb-target" aria-label="intitulé du média : ${this.title}" tabindex="0">
                     <source src="assets/videos/${this.video}" type = "video/mp4">
                 </video>
-                <div class="media-card-text" data-likes= "${this.likes}">
+                <figcaption class="media-card-text" data-likes= "${this.likes}">
                     <span class="media-card-title">${this.title}</span> 
                     <div class="likesByMedia">
                         <em class="infos-Likes-Icon" aria-label="Like" tabindex="0" likeNumber="${this.likes}">
@@ -89,8 +89,8 @@ export class Video {
                
                         <p class="img-likes" aria-label="Ce média a ${this.likes} likes">${this.likes}</p>   
                     </div>
-                </div>
-            </div>
+                </figcaption>
+            </figure>
         </article>
         `
     }
