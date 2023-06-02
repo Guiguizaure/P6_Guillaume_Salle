@@ -174,6 +174,8 @@ export const enableLightboxListeners = () => {
     document.querySelector(".contact_button").setAttribute("tabIndex", "-1"); //disable tabindex contact button header
     document.querySelector(".portraitMedia").setAttribute("tabIndex", "-1"); //disable tabindex image photographer header
     document.querySelector(".static-box").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
+    document.querySelector(".numberLikesBox").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
+    document.querySelector(".price-like-box").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
     // document.querySelector("#sort").setAttribute("tabIndex", "-1"); //disable tabindex sort by text
     document.querySelector(".select-option").setAttribute("tabIndex", "-1"); //disable tabindex sort button
 
@@ -192,26 +194,27 @@ export const enableLightboxListeners = () => {
 
   function enableTabindexLightbox() {
     // enable tabindex for other divs outside lightbox
-   document.querySelector("header a").setAttribute("tabIndex", "1"); //disable tabindex logo
-   document.querySelector(".photographer_infos h1").setAttribute("tabIndex", "2"); //disable tabindex photogaph name header
-   document.querySelector(".photographer_infos .location").setAttribute("tabIndex", "2"); //disable tabindex photogaph city and tagline header
-   document.querySelector(".photographer_infos .tagline").setAttribute("tabIndex", "2"); //disable tabindex photogaph city and tagline header
-   document.querySelector(".contact_button").setAttribute("tabIndex", "2"); //disable tabindex contact button header
-   document.querySelector(".portraitMedia").setAttribute("tabIndex", "2"); //disable tabindex image photographer header
-   document.querySelector(".static-box").setAttribute("tabIndex", "2"); //disable tabindex footer likes
-   // document.querySelector("#sort").setAttribute("tabIndex", "-1"); //disable tabindex sort by text
-   document.querySelector(".select-option").setAttribute("tabIndex", "0"); //disable tabindex sort button
+   document.querySelector("header a").setAttribute("tabIndex", "1"); 
+   document.querySelector(".photographer_infos h1").setAttribute("tabIndex", "2");
+   document.querySelector(".photographer_infos .location").setAttribute("tabIndex", "2"); 
+   document.querySelector(".photographer_infos .tagline").setAttribute("tabIndex", "2"); 
+   document.querySelector(".contact_button").setAttribute("tabIndex", "2"); 
+   document.querySelector(".portraitMedia").setAttribute("tabIndex", "2"); 
+   document.querySelector(".static-box").setAttribute("tabIndex", "2"); 
+   document.querySelector(".numberLikesBox").setAttribute("tabIndex", "2"); 
+    document.querySelector(".price-like-box").setAttribute("tabIndex", "2"); 
+   document.querySelector(".select-option").setAttribute("tabIndex", "0"); 
 
-   const imageSelected = document.querySelectorAll(".media-card-img"); //select tabindex medias catalog
-   const imageTxt = document.querySelectorAll(".media-card-title"); //select tabindex medias catalog title
-   const imageLike = document.querySelectorAll(".img-likes"); //select tabindex medias catalog like number
-   const imageLikeHeart = document.querySelectorAll(".infos-Likes-Icon"); //select tabindex medias catalog like heart icon
+   const imageSelected = document.querySelectorAll(".media-card-img");
+   const imageTxt = document.querySelectorAll(".media-card-title"); 
+   const imageLike = document.querySelectorAll(".img-likes"); 
+   const imageLikeHeart = document.querySelectorAll(".infos-Likes-Icon"); 
 
    for (let i = 0; i < imageSelected.length; i++) {
-     imageSelected[i].setAttribute("tabIndex", "0"); //disable tabindex medias catalog
-     imageTxt[i].setAttribute("tabIndex", "0"); //disable tabindex medias catalog title
-     imageLike[i].setAttribute("tabIndex", "0"); //disable tabindex medias catalog like number
-     imageLikeHeart[i].setAttribute("tabIndex", "0"); //disable tabindex medias catalog like heart icon
+     imageSelected[i].setAttribute("tabIndex", "0"); 
+     imageTxt[i].setAttribute("tabIndex", "0"); 
+     imageLike[i].setAttribute("tabIndex", "0"); 
+     imageLikeHeart[i].setAttribute("tabIndex", "0");
    }
  }
 

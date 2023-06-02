@@ -44,10 +44,10 @@ function displayPhotographerInfo(photographer) {
     const picture = `assets/photographers/${portrait}`;
     const header = document.querySelector(".photograph-header");
     header.innerHTML = `
-                          <div class="photographer_infos">
-                            <h1 aria-label= "nom ${name}">${name}</h1>
-                            <p class="location" aria-label= "${city}, ${country}">${city}, ${country}</p>
-                            <p class="tagline" aria-label="${tagline}">${tagline}</p>
+                          <div class="photographer_infos tabindex="0" ">
+                            <h1 aria-label= "nom ${name}" tabindex="0">${name}</h1>
+                            <p class="location" tabindex="0" aria-label= "${city}, ${country}">${city}, ${country}</p>
+                            <p class="tagline" tabindex="0" aria-label="${tagline}">${tagline}</p>
                           </div>
                             
                           <button role="button" 

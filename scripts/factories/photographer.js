@@ -38,7 +38,7 @@ export class MediaImage{
                             </svg>
                         </em>
                        
-                        <p class="img-likes" aria-label="Ce média a ${this.likes} likes">${this.likes}</p>  
+                        <p class="img-likes" aria-label="Ce média a ${this.likes} likes" tabindex="0">${this.likes}</p>  
                     </div>
                 </figcaption>
             </figure>
@@ -52,7 +52,7 @@ export class MediaImage{
                 <div class="slide-container">
                     <figure class="slide-media-container">
                          <span class="media-slide-title">${this.title}</span>
-                         <img class="media-img lb-target" src="assets/newSamplePhotos/${this.image}" alt="intitulé du média ! ${this.title}"/>       
+                         <img class="media-img lb-target" src="assets/newSamplePhotos/${this.image}" alt="intitulé du média ! ${this.title}" tabindex="0"/>       
                     </figure>
                 </div>
             </div>
@@ -87,7 +87,7 @@ export class MediaVideo {
                             </svg>
                         </em>
                
-                        <p class="img-likes" aria-label="Ce média a ${this.likes} likes">${this.likes}</p>   
+                        <p class="img-likes" aria-label="Ce média a ${this.likes} likes" tabindex="0">${this.likes}</p>   
                     </div>
                 </figcaption>
             </figure>
@@ -101,7 +101,7 @@ export class MediaVideo {
                 <div class="slide-container">
                     <div class="slide-media-container">
                          <span class="media-slide-title">${this.title}</span>
-                        <video controls preload='metadata' id="ctrls-vid" class="media-img lb-target" aria-label="intitulé du média ${this.title}">
+                        <video controls preload='metadata' id="ctrls-vid" class="media-img lb-target" aria-label="intitulé du média ${this.title}" tabindex="0">
                             <source src="assets/videos/${this.video}" type = "video/mp4">
                         </video>
                     </div>

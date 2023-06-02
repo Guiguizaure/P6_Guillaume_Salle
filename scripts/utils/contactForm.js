@@ -148,6 +148,8 @@ export function formulaire(name) {
     document.querySelector(".contact_button").setAttribute("tabIndex", "-1"); //disable tabindex contact button header
     document.querySelector(".portraitMedia").setAttribute("tabIndex", "-1"); //disable tabindex image photographer header
     document.querySelector(".static-box").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
+    document.querySelector(".numberLikesBox").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
+    document.querySelector(".price-like-box").setAttribute("tabIndex", "-1"); //disable tabindex footer likes
     // document.querySelector("#sort").setAttribute("tabIndex", "-1"); //disable tabindex sort by text
     document.querySelector(".select-option").setAttribute("tabIndex", "-1"); //disable tabindex sort button
 
@@ -173,6 +175,8 @@ export function formulaire(name) {
    document.querySelector(".contact_button").setAttribute("tabIndex", "2"); 
    document.querySelector(".portraitMedia").setAttribute("tabIndex", "2"); 
    document.querySelector(".static-box").setAttribute("tabIndex", "2"); 
+   document.querySelector(".numberLikesBox").setAttribute("tabIndex", "2");
+    document.querySelector(".price-like-box").setAttribute("tabIndex", "2"); 
    document.querySelector(".select-option").setAttribute("tabIndex", "0");
 
    const imageSelected = document.querySelectorAll(".media-card-img"); 
