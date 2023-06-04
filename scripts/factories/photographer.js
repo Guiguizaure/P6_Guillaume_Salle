@@ -7,8 +7,6 @@ export class MediaFactorie  {
         else if(Object.prototype.hasOwnProperty.call(data, "video")){
             return new MediaVideo(data)
         }
-
-    console.log(data.type)
     }
 }
 
@@ -101,7 +99,7 @@ export class MediaVideo {
                 <div class="slide-container">
                     <div class="slide-media-container">
                          <span class="media-slide-title">${this.title}</span>
-                        <video controls preload='metadata' id="ctrls-vid" class="media-img lb-target" aria-label="intitulé du média ${this.title}" tabindex="0">
+                        <video controls preload='metadata' id="ctrls-vid" class="media-img lb-target" aria-label="intitulé du média ${this.title}" tabindex="0" >
                             <source src="assets/videos/${this.video}" type = "video/mp4">
                         </video>
                     </div>

@@ -2,8 +2,7 @@ import {formulaire} from "../utils/contactForm.js"
 import {MediaFactorie} from "../factories/photographer.js"
 import {handleButtonsOptions, sortData} from "../utils/selectBox.js"
 import {enableLightboxListeners} from "../utils/slider.js"
-
-
+import { likesInfos } from "../utils/static.js";
 
 // Data recuperer par local storage
 async function getData(photographerId) {
@@ -66,7 +65,7 @@ function displayPhotographerInfo(photographer) {
 
 
 
-export async function displayMedia(portfolioArray) {
+export async function displayMedia(portfolioArray, sortOption) {
 
   const urlParams = new URLSearchParams(window.location.search);
   const photographerId = parseInt(urlParams.get("photographer"));
@@ -76,7 +75,12 @@ export async function displayMedia(portfolioArray) {
 
   const portfolioSection = document.querySelector(".portfolio-section");
   const lightboxSection = document.querySelector(".slider-modal");
+
   portfolioSection.innerHTML = "";
+  const slides = document.querySelectorAll('.slide')
+  slides.forEach(slide => {
+    slide.remove()
+  });
 
   portfolioArray.forEach((portfolioItem) => {
     const mediaModel = new MediaFactorie(portfolioItem); 
@@ -87,7 +91,6 @@ export async function displayMedia(portfolioArray) {
     portfolioSection.innerHTML += mediaCardDOM;
     lightboxSection.innerHTML += mediaSlidesDOM;
   });
-
 
   //Like event
   const totalLikesBox = document.querySelector('.numberLikesBox');
@@ -125,10 +128,7 @@ export async function displayMedia(portfolioArray) {
       }
     });
   });
-  
-
-  
-  enableLightboxListeners();
+  enableLightboxListeners(portfolioArray, sortOption);
 }
 
 
@@ -141,8 +141,7 @@ async function init() {
   const photographerId = parseInt(urlParams.get("photographer"));
     
 
-    const { photographer, portfolio, pathName, totalLikes, dayPrice } =
-    await getData(photographerId);
+    const { photographer, portfolio, pathName, totalLikes, dayPrice } = await getData(photographerId);
     displayPhotographerInfo(photographer);
   
     // Methode sort qui trie les element d'un tableau 
@@ -151,13 +150,15 @@ async function init() {
     });
   
     // par defaut ont tri par Popularité dans la page médias (à l'ouverture)
-    displayMedia(triPopularite, photographer);
+    displayMedia(triPopularite, 'Popularité');
   
     displayPhotographerInfo(photographer);
   
     handleButtonsOptions();
   
-    sortData(portfolio, photographer, totalLikes, dayPrice);
+    sortData(portfolio);
+
+    likesInfos(totalLikes, dayPrice);
   
     formulaire(pathName);
 

@@ -19,73 +19,105 @@ sliderModal.innerHTML = `
 
 
 // Function to enable the lightbox listeners
-export const enableLightboxListeners = () => {
- // Select the previous, next, and close buttons for the slider modal
-  const prevBtn = document.querySelector(".arrow-left");
-  const nextBtn = document.querySelector(".arrow-right");
-  const closeBtn = document.querySelector(".close-lightbox");
+export function enableLightboxListeners(portfolioArray, sortOption) {
+    // Select all media cards and create an array of media card elements
+    const mediaCardsList = Array.from(
+      document.querySelectorAll(".media-card-img")
+    );
+  
+    // Create an array of slide elements
+    const slides = Array.from(document.querySelectorAll(".slide"));
+		
+    // Create an array of slide IDs for navigation purposes
+    const slidesIds = slides.map((slide) => parseInt(slide.dataset.id));
+  
+    // Select the previous, next, and close buttons for the slider modal
+    let prevBtn;
+    let nextBtn;
+    let closeBtn;
+  
+    // Store the current slide index
+    let currentIndex = 0;
 
-  // Select all media cards and create an array of media card elements
-  const mediaCardsList = Array.from(
-    document.querySelectorAll(".media-card-img")
-  );
+    // const sortOption = 'Popularité'; // Update this with your initial sort option
 
-  // Create an array of slide elements
-  const slides = Array.from(document.querySelectorAll(".slide"));
+    if (sortOption === 'Date') {
+      slides.sort((a, b) => {
+        const dateA = new Date(a.dataset.date);
+        const dateB = new Date(b.dataset.date);
+        return dateB - dateA;
+      });
+    } else if (sortOption === 'Titre') {
+      slides.sort((a, b) => {
+        const titleA = a.dataset.title.toLowerCase();
+        const titleB = b.dataset.title.toLowerCase();
+        return titleA.localeCompare(titleB);
+      });
+    } else if (sortOption === 'Popularité') {
+      slides.sort((a, b) => b.dataset.likes - a.dataset.likes);
+    }
 
-  // Create an array of slide IDs for navigation purposes
-  const slidesIds = slides.map((slide) => parseInt(slide.dataset.id));
-
-  // Function to show a particular slide
-  const showSlide = (index) => {
-    slides.forEach((slide) => {
-      // If the slide ID matches the current index, show the slide, otherwise hide it
-      parseInt(slide.dataset.id) === slidesIds[index]
-        ? (slide.style.display = "block")
-        : (slide.style.display = "none");
+   // Function to show a particular slide
+   const showSlide = (index) => {
+    slides.forEach((slide, slideIndex) => {
+      slide.style.display = slideIndex === index ? 'block' : 'none';
     });
 
-    // If the current index is at the beginning of the array, set the previous button's ID to the last element of the array, otherwise set it to the index before the current one
-    index - 1 < 0
-      ? (prevBtn.dataset.prev = slidesIds.length - 1)
-      : (prevBtn.dataset.prev = index - 1);
-    // If the current index is at the end of the array, set the next button's ID to the first element of the array, otherwise set it to the index after the current one
-    index + 1 > slidesIds.length - 1
-      ? (nextBtn.dataset.next = 0)
-      : (nextBtn.dataset.next = index + 1);
+    // Get the current slide ID from the slides array
+    const currentSlideId = parseInt(slides[index].dataset.id);
+
+    // Get the corresponding index in the slidesIds array
+    currentIndex = slidesIds.indexOf(currentSlideId);
   };
 
-  
+  // Select the previous, next, and close buttons for the slider modal
+  prevBtn = document.querySelector(".arrow-left");
+  nextBtn = document.querySelector(".arrow-right");
+  closeBtn = document.querySelector(".close-lightbox");
+
+   // Function to initialize the slider with the clicked index
+   const initializeSlider = (index) => {
+    showSlide(index);
+  };
+
+  prevBtn.addEventListener("click", () => {
+    const prevIndex = currentIndex - 1 < 0 ? slides.length - 1 : currentIndex - 1;
+    showSlide(prevIndex);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const nextIndex = currentIndex + 1 >= slides.length ? 0 : currentIndex + 1;
+    showSlide(nextIndex);
+  });
+
   // Add event listeners to each media card
-  mediaCardsList.forEach((mc) => {
+  mediaCardsList.forEach((mc, index) => {
     // Set the media card tabindex to 0 for accessibility
     mc.setAttribute("tabindex", "0");
 
     mc.addEventListener("click", (e) => {
       // Get the current index of the clicked media card's parent element in the slidesIds array
-      const currIndex = slidesIds.indexOf(parseInt(e.target.parentElement.dataset.id));
-      // Show the current slide
-      showSlide(currIndex);
+	  const clickedIndex = index;
+      initializeSlider(clickedIndex);
 
       disableTabindexLightbox();
       
       // Display the slider container
       sliderModal.style.display = "block";
 
-      prevBtn.addEventListener("click", (e) => {
-        showSlide(parseInt(e.target.dataset.prev));
-      });
+      // prevBtn.addEventListener("click", () => {
+      //   const prevIndex = currentIndex - 1 < 0 ? slides.length - 1 : currentIndex - 1;
+      //   showSlide(prevIndex);
+      // });
 
-      nextBtn.addEventListener("click", (e) => {
-        showSlide(parseInt(e.target.dataset.next));
-      });
+      // nextBtn.addEventListener("click", () => {
+      //   const nextIndex = currentIndex + 1 >= slides.length ? 0 : currentIndex + 1;
+      //   showSlide(nextIndex);
+      // });
+    
 
       closeBtn.addEventListener("click", () => {
-
         enableTabindexLightbox();
-
-
-
         sliderModal.style.display = "none";
       });
 
@@ -108,12 +140,9 @@ export const enableLightboxListeners = () => {
       // Display the slider container
       sliderModal.style.display = "block";
 
-      prevBtn.addEventListener("click", (e) => {
-        showSlide(parseInt(e.target.dataset.prev));
-      });
-
-      nextBtn.addEventListener("click", (e) => {
-        showSlide(parseInt(e.target.dataset.next));
+      closeBtn.addEventListener("click", () => {
+        enableTabindexLightbox();
+        sliderModal.style.display = "none";
       });
 
       e.preventDefault();
@@ -219,5 +248,7 @@ export const enableLightboxListeners = () => {
  }
 
 }; //end enableLightboxListeners
+
+
 
 

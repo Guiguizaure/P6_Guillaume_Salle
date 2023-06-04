@@ -1,7 +1,7 @@
 import { displayMedia } from "../pages/photographer.js";
-import { likesInfos } from "./static.js";
+import { enableLightboxListeners } from './slider.js';
 
- const selectSort = document.querySelector(".selectBox");
+const selectSort = document.querySelector(".selectBox");
 
 selectSort.innerHTML = `   
       <div class="works-sort">
@@ -85,36 +85,25 @@ export function handleButtonsOptions() {
 
 /*////////////////////////////////////////////////////////////////////*/
 
-export function sortData(data, photographer, totalLikes, dayPrice) {
-  function sortMedia(data) {
-    for (const element of optionsButtons) {
-      element.addEventListener('click', function (e) {
-       
+export function sortData(data) {
 
-        if (e.target.dataset.filtre === 'Date') {
-          const mediasSortedByDate = data.sort(function (a, b) {
-            return new Date(b.date) - new Date(a.date);
-          });
-          displayMedia(mediasSortedByDate, photographer);
+  let sortOption = ''; // Declare the sortOption variable
 
-        } else if (e.target.dataset.filtre === 'Titre') {
-          const mediasSortedByTitre = data.sort((a, b) =>
-            a.title.localeCompare(b.title)
-          );
-          displayMedia(mediasSortedByTitre, photographer);
-
-        } else if (e.target.dataset.filtre === 'Popularité') {
-          const triPopularite = data.sort((a, b) => {
-            return a.likes < b.likes ? 1 : -1;
-          });
-          displayMedia(triPopularite, photographer);
-        }
-      });
-    }
-   
+  for (const element of optionsButtons) {
+    element.addEventListener('click', function (e) {
+        sortOption = e.target.dataset.filtre;
+      // console.log(sortOption)
+      if (sortOption === 'Date') {
+        const mediasSortedByDate = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        displayMedia(mediasSortedByDate, sortOption);
+      } else if (sortOption === 'Titre') {
+        const mediasSortedByTitre = data.sort((a, b) => a.title.localeCompare(b.title));
+        displayMedia(mediasSortedByTitre, sortOption);
+      } else if (sortOption === 'Popularité') {
+        const triPopularite = data.sort((a, b) => (a.likes < b.likes ? 1 : -1));
+        displayMedia(triPopularite, sortOption);
+      }
+    });
   }
-
-  sortMedia(data);
-  likesInfos(totalLikes, dayPrice);
   
 }

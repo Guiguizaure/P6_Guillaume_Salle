@@ -22,11 +22,13 @@
    position: relative;
   display: flex;
   flex-direction: column;
+  height: 688px;
   width: 31rem;
   margin-top: 2rem;
   padding: 18px 10px;
   border-radius: 1%;
-  background-color: #DB8876
+  background-color: #DB8876;
+  overflow-y: auto;
 }
 
 .closedContact {
@@ -42,8 +44,6 @@
   font-size: 4rem;
   line-height: 40px;
   text-align: center;
-  /* margin-top: 20px;
-  margin-right: 20px; */
   cursor: pointer;
   color: #FFFFFF;
   background-color: #11ffee00;
@@ -52,23 +52,9 @@
 .photographersContact p,
 h2 {
   font-size: 3rem;
-  /* width: 95%; */
-  /* margin: 0; */
   margin-left: 20px;
-  /* padding: 0; */
 }
 
-/* .photographersContactName {
-  margin-left: 20px;
-} */
-
-/* .formClass {
-  width: 100%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
 
 .divInputs {
   margin: 0 auto;
@@ -93,10 +79,6 @@ input::placeholder{
   padding-left: 8px;
 }
 
-/* input[type="text"],
-input[type="email"]{
-  padding-left: 8px;
-} */
 
 textarea {
   width: 100%;
@@ -144,7 +126,6 @@ textarea {
   
   .photographer_infos {
     text-align: left;
-    /* border: black 1px solid; */
     margin: 0 40px;
   }
   .photographer_infos .location
@@ -152,17 +133,11 @@ textarea {
     color: #901C1C;
     font-size: 24px;
   }
-  .photographer_infos .tag-line
-  {
-    /* color: #901C1C; */
+  .photographer_infos .tag-line{
     font-size: 14px;
   }
   
-  /* .photographer-name {
-    font-size: 3rem;
-    color: #901C1C;
-    margin: 0;
-  } */
+
   .photographer_infos h1{
     max-width: 535px;
     color: #D3573C;
@@ -201,22 +176,9 @@ textarea {
     border-radius: 5px;
     cursor: pointer;
   }
-  /*
-  .contact_button:hover {
-    background:#974848;
-  }
-  
-  .contact_button:focus {
-    background:#974848;
-  }
- */
 
 
 
-
-/* article{
-    width: 250px;
-} */
 .fa-heart{
   display: none;
 }
@@ -431,14 +393,12 @@ form input {
 /* --------------- Sort Button ---------------- */
 .sort-title {
     display: flex;
-    /* width: 110px; */
     height: 73px;
     align-items: center;
     font-size: 1rem;
     font-weight: 500;
     position: relative;
     bottom: 30px;
-    /* border: 1px solid black; */
     margin-right: 15px;
   }
   
@@ -451,7 +411,6 @@ form input {
   
   .works-sort {
     display: flex;
-    /* width: 90%; */
     height: 100px;
     margin: 50px 100px 0 100px;
   }
@@ -471,7 +430,6 @@ form input {
     height: 50px;
     border: none;
     background: #911c1c;
-    /* background: #b38c8c; */
     font-size: 1rem;
     color: #ffffff;
     position: relative;
@@ -513,12 +471,6 @@ form input {
 
 /* --------------------- static box -------------------- */
 
-/* .likesBox {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    
-  } */
   
   .static-box {
     display: flex;
@@ -544,16 +496,12 @@ form input {
   }
   
   .numberLikesBox {
-    /* width: 40%; */
     padding-left: 1.5rem;
     padding-right: 0.4rem;
   }
   
   .heart-box {
-    /* width: 50%;
-    height: 35%; */
     margin-top: 5px;
-    /* margin-right: 10px; */
   }
   
   .static-box-price {
@@ -595,7 +543,6 @@ form input {
     min-width: 80%;
     height: 90%;
     min-height: 90%;
-    /* overflow: hidden; */
   }
   
   .arrow-left-container,
